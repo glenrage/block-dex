@@ -1,48 +1,22 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 const PokedexContext = createContext({
-  //   form: {},
+  form: {},
 });
 
 const PokedexContextProvider = ({ children }) => {
   // the value that will be given to the context
-  const [data, setData] = useState({
-    firstName: '',
-    lastName: '',
-  });
+  const [customPokemon, setCustomPokemon] = useState([]);
 
-  const [totalPokemon, setTotalPokemon] = useState([]);
+  useEffect(() => {
+    localStorage.setItem('customPokemon', JSON.stringify(customPokemon));
+  }, [customPokemon]);
 
-  console.log('total pokenon', totalPokemon);
-
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-  });
-
-  console.log('context form', form);
-
-  const handleFormChange = (event) => {
-    console.log('event', event);
-    // Get the name of the field that caused this change event
-    // Get the new value of this field
-    const { name, value } = event.target;
-
-    console.log('name', name);
-
-    // Update state
-    // Assign new value to the appropriate form field
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+  console.log('total pokenon', customPokemon);
 
   return (
     // the Provider gives access to the context to its children
-    <PokedexContext.Provider
-      value={{ data, handleFormChange, setTotalPokemon, totalPokemon }}
-    >
+    <PokedexContext.Provider value={{ setCustomPokemon, customPokemon }}>
       {children}
     </PokedexContext.Provider>
   );

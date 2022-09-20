@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FormContext } from './Form';
-// import './FormInput.css';
+import './FormInput.css';
 
 function FormInput(props) {
   const { label, type = 'text', name } = props;

@@ -47,14 +47,13 @@ const Gallery = () => {
   return (
     <>
       <div className='gallery'>
-        <h1>Gallery</h1>
         {pokedexData?.results?.length
           ? pokedexData.results.map((item) => {
               return <DetailCard name={item.name} url={item.url} />;
             })
           : null}
       </div>
-      <Pagination count={50} page={page} onChange={handlePaginationChange} />
+      <Pagination count={30} page={page} onChange={handlePaginationChange} />
     </>
   );
 };

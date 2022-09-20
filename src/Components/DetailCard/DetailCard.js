@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -37,7 +36,7 @@ const DetailCard = ({ name, url }) => {
     fetch();
   }, [url]);
 
-  //   console.log('pokemon details', pokemonDetails);
+  console.log('pokemon details', pokemonDetails);
 
   return (
     <>
@@ -54,7 +53,10 @@ const DetailCard = ({ name, url }) => {
             alt='pokemon'
             height='100'
             width='100'
-            image={pokemonDetails?.sprites?.other?.dream_world?.front_default}
+            image={
+              pokemonDetails?.sprites?.other?.dream_world?.front_default ||
+              pokemonDetails?.image
+            }
           />
         </Button>
 
