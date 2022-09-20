@@ -1,13 +1,9 @@
-import React from "react";
-import Container from "@mui/material/Container";
-import "./Layout.css";
+import React from 'react';
+import Container from '@mui/material/Container';
 
 function Layout({ children }) {
   return (
-    <Container
-      maxWidth="xl"
-      className="main"
-    >
+    <Container maxWidth='xl' className='main'>
       <h1>POKEDEX</h1>
       {children}
     </Container>
