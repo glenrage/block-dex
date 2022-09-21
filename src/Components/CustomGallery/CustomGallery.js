@@ -13,7 +13,6 @@ const CustomGallery = () => {
 
   return (
     <div className='gallery'>
-      {console.log('rendering')}
       {items?.length
         ? items.map((item, i) => {
             return (

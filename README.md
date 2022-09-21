@@ -95,6 +95,8 @@ Otherwise you can download and run it locally
    - I created a reusable form component that utilizes React.Context so that the form may be used globally within the application without any parent-child dependency.
    - I stored the new pokemon data in localstorage, normally we would probably want to persist the data through a database layer, but in our case its temporarily stored on the client side.
    - New Pokemon data is retrieved through Context API
+2. Error Handling - Main application error handling is handled through an Error Handler Higher order component. Network requests error handling is done via simple try catch blocks.
+3. Testing - I added some Integration tests as I think they provide the most bang for buck when it comes to time allotted for writing tests
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
