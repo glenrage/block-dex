@@ -5,8 +5,6 @@ import { PokedexContext } from '../../context';
 const CustomGallery = () => {
   const [items, setItems] = useState([]);
 
-  console.log('itesm', items);
-
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('customPokemon'));
     if (items) {
@@ -16,10 +14,10 @@ const CustomGallery = () => {
 
   return (
     <>
-      <div className='CustomGallery'>
+      <div className='gallery'>
         {items?.length
           ? items.map((item) => {
-              return <DetailCard name={item.name} url={item.url} />;
+              return <DetailCard customPokemonDetails={item} />;
             })
           : null}
       </div>

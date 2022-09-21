@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import DetailCard from '../DetailCard/DetailCard.js';
+import Box from '@mui/material/Box';
+
 import { PokedexContext } from '../../context';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
@@ -41,11 +43,8 @@ const Gallery = () => {
     fetch();
   }, [pokemonApiUrl]);
 
-  // console.log('pokedex data', pokedexData);
-
-  // console.log('Context test', test);
   return (
-    <>
+    <Box className='gallery-container'>
       <div className='gallery'>
         {pokedexData?.results?.length
           ? pokedexData.results.map((item) => {
@@ -53,8 +52,13 @@ const Gallery = () => {
             })
           : null}
       </div>
-      <Pagination count={30} page={page} onChange={handlePaginationChange} />
-    </>
+      <Pagination
+        className='pagination-bar'
+        count={30}
+        page={page}
+        onChange={handlePaginationChange}
+      />
+    </Box>
   );
 };
 
