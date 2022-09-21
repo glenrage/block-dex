@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-const PokedexContext = createContext({
-  form: {},
-});
+const PokedexContext = createContext({});
 
 const PokedexContextProvider = ({ children }) => {
   const [customPokemon, setCustomPokemon] = useState([]);

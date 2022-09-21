@@ -44,7 +44,7 @@ const AddPokemonForm = () => {
 
   return (
     <div className='AddPokemonForm'>
-      <h4>Add new Pokemon</h4>
+      <h4>Add your own custom Pokemon</h4>
 
       <Form submit={submit} initialValues={initialValues}>
         <FormInput label='Pokemon Name' name='name' />
@@ -65,7 +65,7 @@ const AddPokemonForm = () => {
       >
         <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
           {`Successfully added ${
-            customPokemon[customPokemon.length - 1]?.name
+            customPokemon && customPokemon[customPokemon?.length - 1]?.name
           }`}
         </Alert>
       </Snackbar>

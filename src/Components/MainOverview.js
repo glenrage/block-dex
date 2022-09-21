@@ -43,6 +43,7 @@ const MainOverview = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+        <h4>PokeyDecks results</h4>
         <Gallery />
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -50,7 +51,6 @@ const MainOverview = () => {
           Your newly created pokemon will be shown here in order of creation,
           just like a blockchain!
         </h4>
-
         <CustomGallery />
       </TabPanel>
       <TabPanel value={value} index={2}>

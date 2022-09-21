@@ -27,6 +27,8 @@ const Gallery = () => {
     fetch();
   }, [page]);
 
+  const pageCount = pokedexData ? Math.floor(pokedexData?.count / limit) : 0;
+
   return (
     <Box className='gallery-container'>
       <div className='gallery'>
@@ -40,7 +42,7 @@ const Gallery = () => {
       </div>
       <Pagination
         className='pagination-bar'
-        count={30}
+        count={pageCount}
         page={page}
         onChange={handlePaginationChange}
       />
