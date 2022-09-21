@@ -1,6 +1,6 @@
 import Layout from './Components/Layout.js';
 import MainOverview from './Components/MainOverview.js';
-import { PokedexContextProvider } from './context';
+import { PokedexContextProvider } from './context/context';
 import ErrorHandler from './Components/ErrorHandler';
 import './App.css';
 

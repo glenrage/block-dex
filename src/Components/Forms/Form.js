@@ -31,7 +31,7 @@ function Form(props) {
       </FormContext.Provider>
 
       <button type='button' onClick={() => submit(form)}>
-        Submit
+        Create new Pokemon
       </button>
     </form>
   );

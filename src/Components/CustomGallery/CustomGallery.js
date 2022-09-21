@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import DetailCard from '../DetailCard/DetailCard.js';
-import { PokedexContext } from '../../context';
 
 const CustomGallery = () => {
   const [items, setItems] = useState([]);
@@ -13,15 +12,19 @@ const CustomGallery = () => {
   }, []);
 
   return (
-    <>
-      <div className='gallery'>
-        {items?.length
-          ? items.map((item) => {
-              return <DetailCard customPokemonDetails={item} />;
-            })
-          : null}
-      </div>
-    </>
+    <div className='gallery'>
+      {console.log('rendering')}
+      {items?.length
+        ? items.map((item, i) => {
+            return (
+              <DetailCard
+                customPokemonDetails={item}
+                key={`${i}--${item.id}`}
+              />
+            );
+          })
+        : null}
+    </div>
   );
 };
 

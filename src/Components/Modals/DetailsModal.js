@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import axios from 'axios';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { fetchSecondaryPokemonDetails } from '../../utils/rest_helpers';
 
 const style = {
   position: 'absolute',
@@ -19,26 +19,17 @@ const style = {
   p: 4,
 };
 
-export default function DetailsModal({ open, onClose, details }) {
+const DetailsModal = ({ open, onClose, details, customPokemonDetails }) => {
   const [secondaryDetails, setSecondaryDetails] = useState();
-
-  const fetchSecondaryData = async (url) => {
-    try {
-      const { data } = await axios.get(url);
-
-      return data;
-    } catch (error) {
-      console.error('error fetching pokemon', error);
-    }
-  };
 
   useEffect(() => {
     async function fetch() {
-      let response = await fetchSecondaryData(details?.species?.url);
+      let response = await fetchSecondaryPokemonDetails(details?.species?.url);
 
-      if (response) setSecondaryDetails(response);
+      if (response) {
+        setSecondaryDetails(response);
+      }
     }
-
     fetch();
   }, [details?.species?.url]);
 
@@ -46,7 +37,10 @@ export default function DetailsModal({ open, onClose, details }) {
     <Modal open={open} onClose={onClose}>
       <Box sx={style}>
         <img
-          src={details?.sprites?.other?.home?.front_shiny}
+          src={
+            details?.sprites?.other?.home?.front_shiny ||
+            customPokemonDetails?.image
+          }
           component='img'
           alt='pokemon'
           height='100'
@@ -55,21 +49,40 @@ export default function DetailsModal({ open, onClose, details }) {
         <IconButton style={{ float: 'right' }} onClick={onClose}>
           <CloseIcon />
         </IconButton>
-        <h1>{details?.name.toUpperCase()}</h1>
+        <h1>
+          {details?.name.toUpperCase() ||
+            customPokemonDetails?.name.toUpperCase()}
+        </h1>
         <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-          {secondaryDetails?.flavor_text_entries?.[1]?.flavor_text}
+          {secondaryDetails
+            ? secondaryDetails?.flavor_text_entries?.[1]?.flavor_text
+            : customPokemonDetails?.description}
         </Typography>
         <div className='detail-column'>
           <h3>Pokemon Stats</h3>
 
-          <p>Height - {details?.height} "</p>
-          <p>Weight - {details?.weight} lbs</p>
+          <p>Height - {details?.height || customPokemonDetails?.height} M</p>
+          <p>Weight - {details?.weight || customPokemonDetails?.weight} KG</p>
 
-          <p>Capture Rate - {secondaryDetails?.capture_rate}</p>
-          <p>Base Happiness - {secondaryDetails?.base_happiness}</p>
-          <p>Growth Rate - {secondaryDetails?.growth_rate.name}</p>
+          <p>
+            Capture Rate -{' '}
+            {secondaryDetails?.capture_rate ||
+              customPokemonDetails?.capture_rate}
+          </p>
+          <p>
+            Base Happiness -{' '}
+            {secondaryDetails?.base_happiness ||
+              customPokemonDetails?.base_happiness}
+          </p>
+          <p>
+            Growth Rate -{' '}
+            {secondaryDetails?.growth_rate.name ||
+              customPokemonDetails?.growth_rate}
+          </p>
         </div>
       </Box>
     </Modal>
   );
-}
+};
+
+export default DetailsModal;

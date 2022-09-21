@@ -1,54 +1,40 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import DetailCard from '../DetailCard/DetailCard.js';
 import Box from '@mui/material/Box';
-
-import { PokedexContext } from '../../context';
-import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
-
-const limit = 20;
+import { fetchPokemonData } from '../../utils/rest_helpers.js';
 
 const Gallery = () => {
-  const getOffset = (num) => {
-    return (num - 1) * limit;
-  };
+  const limit = 20;
 
   const [pokedexData, setPokedexData] = useState([]);
   const [page, setPage] = useState(1);
+
+  const getOffset = (num) => {
+    return (num - 1) * limit;
+  };
 
   const handlePaginationChange = (event, value) => {
     setPage(value);
   };
 
-  let pokemonApiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${getOffset(
-    page
-  )}}`;
-
-  const fetchPokemonData = async (url) => {
-    try {
-      const { data } = await axios.get(url);
-
-      return data;
-    } catch (error) {
-      console.error('error fetching pokemon', error);
-    }
-  };
-
   useEffect(() => {
     async function fetch() {
-      let response = await fetchPokemonData(pokemonApiUrl);
+      let response = await fetchPokemonData(limit, getOffset(page));
 
       if (response) setPokedexData(response);
     }
     fetch();
-  }, [pokemonApiUrl]);
+  }, [page]);
 
   return (
     <Box className='gallery-container'>
       <div className='gallery'>
         {pokedexData?.results?.length
           ? pokedexData.results.map((item) => {
-              return <DetailCard name={item.name} url={item.url} />;
+              return (
+                <DetailCard name={item.name} url={item.url} key={item.url} />
+              );
             })
           : null}
       </div>

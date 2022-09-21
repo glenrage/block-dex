@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import Grid from '@mui/material/Grid';
-
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import DetailsModal from '../Modals/DetailsModal';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
+import { fetchPokemonDetails } from '../../utils/rest_helpers';
 
 const DetailCard = ({ name, url, customPokemonDetails }) => {
   const [open, setOpen] = useState(false);
@@ -15,17 +13,6 @@ const DetailCard = ({ name, url, customPokemonDetails }) => {
   const handleClose = () => setOpen(false);
 
   const [pokemonDetails, setPokemonDetails] = useState();
-
-  const fetchPokemonDetails = async (fetchUrl) => {
-    if (!fetchUrl) return;
-    try {
-      const { data } = await axios.get(fetchUrl);
-
-      return data;
-    } catch (error) {
-      console.error('Error', error);
-    }
-  };
 
   useEffect(() => {
     async function fetch() {
@@ -40,13 +27,12 @@ const DetailCard = ({ name, url, customPokemonDetails }) => {
 
   return (
     <>
-      {customPokemonDetails ? null : (
-        <DetailsModal
-          open={open}
-          onClose={handleClose}
-          details={pokemonDetails}
-        />
-      )}
+      <DetailsModal
+        open={open}
+        onClose={handleClose}
+        details={pokemonDetails}
+        customPokemonDetails={customPokemonDetails}
+      />
       <Card sx={{ width: 200, margin: 2, height: 200 }}>
         <Button onClick={handleOpen}>
           <CardMedia
