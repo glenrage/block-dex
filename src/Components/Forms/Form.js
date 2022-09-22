@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+
 import './Form.css';
 
 export const FormContext = React.createContext({
@@ -30,9 +32,9 @@ function Form(props) {
         {children}
       </FormContext.Provider>
 
-      <button type='button' onClick={() => submit(form)}>
+      <Button variant='contained' onClick={() => submit(form)}>
         Create new Pokemon
-      </button>
+      </Button>
     </form>
   );
 }

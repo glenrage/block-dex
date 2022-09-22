@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
 import DetailCard from '../DetailCard/DetailCard.js';
 
 const CustomGallery = () => {
@@ -12,18 +13,20 @@ const CustomGallery = () => {
   }, []);
 
   return (
-    <div className='gallery'>
-      {items?.length
-        ? items.map((item, i) => {
-            return (
-              <DetailCard
-                customPokemonDetails={item}
-                key={`${i}--${item.id}`}
-              />
-            );
-          })
-        : null}
-    </div>
+    <Box className='custom-gallery'>
+      <div className='gallery'>
+        {items?.length
+          ? items.map((item, i) => {
+              return (
+                <DetailCard
+                  customPokemonDetails={item}
+                  key={`${i}--${item.id}`}
+                />
+              );
+            })
+          : null}
+      </div>
+    </Box>
   );
 };
 

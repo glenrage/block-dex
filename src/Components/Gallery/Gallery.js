@@ -27,10 +27,12 @@ const Gallery = () => {
     fetch();
   }, [page]);
 
-  const pageCount = pokedexData ? Math.floor(pokedexData?.count / limit) : 0;
+  const pageCount = pokedexData?.count
+    ? Math.floor(pokedexData.count / limit)
+    : 0;
 
   return (
-    <Box className='gallery-container'>
+    <Box className='gallery-container' data-testid='gallery-test'>
       <div className='gallery'>
         {pokedexData?.results?.length
           ? pokedexData.results.map((item) => {
@@ -41,6 +43,7 @@ const Gallery = () => {
           : null}
       </div>
       <Pagination
+        data-testid='pagination'
         className='pagination-bar'
         count={pageCount}
         page={page}

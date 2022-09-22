@@ -3,16 +3,11 @@ import Gallery from './Components/Gallery/Gallery.js';
 import MainOverview from './Components/MainOverview.js';
 import AddPokemonForm from './Components/AddPokemon/AddPokemonForm.js';
 import CustomGallery from './Components/CustomGallery/CustomGallery.js';
-
-// test('renders learn react link', () => {
-//   const view = render(<Gallery />);
-
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+import DetailCard from './Components/DetailCard/DetailCard.js';
+import userEvent from '@testing-library/user-event';
 
 describe('Simple PokeDecks Integration Tests', () => {
-  describe('Happy Path rendering', () => {
+  describe('Happy Path Component rendering', () => {
     it('Should render Main Overview Tabs', async () => {
       render(<MainOverview />);
 
@@ -27,15 +22,25 @@ describe('Simple PokeDecks Integration Tests', () => {
       await screen.findByText('BULBASAUR');
       await screen.findByText('IVYSAUR');
       await screen.findByText('VENUSAUR');
+      await screen.findByText('CHARMANDER');
+      await screen.findByText('CHARMELEON');
+    });
+
+    it('Should render Gallery with 20 pokemon cards', async () => {
+      render(<Gallery />);
+
+      const test = await screen.findAllByTestId('detail-card');
+
+      expect(test.length).toBe(20);
     });
 
     it('Should render Custom Gallery', async () => {
       const { container } = render(<CustomGallery />);
 
       // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-      const boxes = container.getElementsByClassName('gallery');
+      const customGallery = container.getElementsByClassName('custom-gallery');
 
-      expect(boxes.length).toBe(1);
+      expect(customGallery.length).toBe(1);
     });
 
     it('Should render Add New Pokemon Form', async () => {
@@ -43,31 +48,22 @@ describe('Simple PokeDecks Integration Tests', () => {
 
       await screen.findByText('Add your own custom Pokemon');
     });
-  });
 
-  describe('Pokedecks API requests', () => {
-    it('Should render Main Overview Page', async () => {
-      render(<MainOverview />);
+    it('should render detail card and additional details when clicked', async () => {
+      render(
+        <DetailCard
+          name='test pokemon'
+          url='https://pokeapi.co/api/v2/pokemon-species/28/'
+        />
+      );
 
-      await screen.findByText('PokeyDecks results');
-    });
+      userEvent.click(
+        screen.getByRole('button', {
+          name: /pokemon/i,
+        })
+      );
 
-    it('Should render Gallery', async () => {
-      render(<MainOverview />);
-
-      await screen.findByText('PokeyDecks results');
-    });
-
-    it('Should render Custom Gallery', async () => {
-      render(<MainOverview />);
-
-      await screen.findByText('PokeyDecks results');
-    });
-
-    it('Should render Add New Pokemon section', async () => {
-      render(<MainOverview />);
-
-      await screen.findByText('PokeyDecks results');
+      await screen.findByText('TEST POKEMON');
     });
   });
 });
