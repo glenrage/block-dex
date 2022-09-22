@@ -14,7 +14,7 @@ const ErrorHandler = ({ children }) => {
 };
 
 const ErrorFallback = ({ error }) => (
-  <div>
+  <div data-testid='error-fallback'>
     <p>Something went wrong 😭</p>
 
     {error.message && <span>Here's the error: {error.message}</span>}

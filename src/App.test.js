@@ -1,9 +1,12 @@
 import { render, screen } from '@testing-library/react';
+
 import Gallery from './Components/Gallery/Gallery.js';
 import MainOverview from './Components/MainOverview.js';
 import AddPokemonForm from './Components/AddPokemon/AddPokemonForm.js';
 import CustomGallery from './Components/CustomGallery/CustomGallery.js';
 import DetailCard from './Components/DetailCard/DetailCard.js';
+import ErrorHandler from './Components/ErrorHandler.js';
+
 import userEvent from '@testing-library/user-event';
 
 describe('Simple PokeDecks Integration Tests', () => {
@@ -64,6 +67,22 @@ describe('Simple PokeDecks Integration Tests', () => {
       );
 
       await screen.findByText('TEST POKEMON');
+    });
+  });
+
+  describe('Error Boundary', () => {
+    it('should render fallback component upon error', () => {
+      const ThrowError = () => {
+        throw new Error('Testing error boundary');
+      };
+
+      render(
+        <ErrorHandler fallback={<ErrorHandler />}>
+          <ThrowError />
+        </ErrorHandler>
+      );
+
+      expect(screen.getByTestId('error-fallback')).toBeVisible();
     });
   });
 });
