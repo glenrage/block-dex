@@ -92,7 +92,6 @@ Otherwise you can download and run it locally
 ## Technical Decisions
 
 1. Add Pokemon Feature - Since instructions were to NOT use the Pokedex API, my intuition tells me this feature should allow the user to custom add a new Pokemon that does not exist.
-   - I created a reusable form component that utilizes React.Context so that the form may be used globally within the application without any parent-child dependency.
    - I stored the new pokemon data in localstorage, normally we would probably want to persist the data through a database layer, but in our case its temporarily stored on the client side.
    - New Pokemon data is retrieved through Context API. Using Redux would be a bit overkill for this small project, but as our app scales a state management library would be ideal than the Context API.
 2. Error Handling - Main application error handling is handled through an Error Handler Wrapper component. Network requests error handling is done via simple try catch blocks.
