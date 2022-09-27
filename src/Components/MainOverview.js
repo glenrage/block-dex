@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import AddPokemonForm from './AddPokemon/AddPokemonForm.js';
 import Gallery from './Gallery/Gallery.js';
 import CustomGallery from './CustomGallery/CustomGallery.js';
 
@@ -32,14 +33,9 @@ const MainOverview = () => {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label='basic tabs example'
-        >
+        <Tabs value={value} onChange={handleChange}>
           <Tab label='Pokemon Gallery' />
           <Tab label='Custom Pokemon Gallery' />
-          <Tab label='Add New Pokemon' />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -51,10 +47,10 @@ const MainOverview = () => {
           Your newly created pokemon will be shown here in order of creation,
           just like a blockchain!
         </h4>
+        <Link to={`add-pokemon`}>
+          <Button variant='contained'>Add New Pokemon</Button>
+        </Link>
         <CustomGallery />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <AddPokemonForm />
       </TabPanel>
     </Box>
   );

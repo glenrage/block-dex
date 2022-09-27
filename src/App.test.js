@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react';
-
 import Gallery from './Components/Gallery/Gallery.js';
 import MainOverview from './Components/MainOverview.js';
-import AddPokemonForm from './Components/AddPokemon/AddPokemonForm.js';
+import AddPokemonForm from './Pages/AddPokemon/AddPokemonForm.js';
 import CustomGallery from './Components/CustomGallery/CustomGallery.js';
 import DetailCard from './Components/DetailCard/DetailCard.js';
 import ErrorHandler from './Components/ErrorHandler.js';
+import { BrowserRouter } from 'react-router-dom';
+import { PokedexContextProvider } from './context/context';
 
 import userEvent from '@testing-library/user-event';
 
@@ -15,7 +16,6 @@ describe('Simple PokeDecks Integration Tests', () => {
       render(<MainOverview />);
 
       await screen.findByText('Pokemon Gallery');
-      await screen.findByText('Add New Pokemon');
       await screen.findByText('Custom Pokemon Gallery');
     });
 
@@ -47,7 +47,13 @@ describe('Simple PokeDecks Integration Tests', () => {
     });
 
     it('Should render Add New Pokemon Form', async () => {
-      render(<AddPokemonForm />);
+      render(
+        <PokedexContextProvider>
+          <BrowserRouter>
+            <AddPokemonForm />
+          </BrowserRouter>
+        </PokedexContextProvider>
+      );
 
       await screen.findByText('Add your own custom Pokemon');
     });
