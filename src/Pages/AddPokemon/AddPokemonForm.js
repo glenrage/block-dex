@@ -90,7 +90,7 @@ const AddPokemonForm = () => {
             Create new Pokemon
           </Button>
 
-          <Link to={'/'}>
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
             <Button variant='contained'>Return to Gallery</Button>
           </Link>
         </span>

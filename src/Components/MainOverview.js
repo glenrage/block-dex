@@ -47,7 +47,7 @@ const MainOverview = () => {
           Your newly created pokemon will be shown here in order of creation,
           just like a blockchain!
         </h4>
-        <Link to={`add-pokemon`}>
+        <Link to={`add-pokemon`} style={{ textDecoration: 'none' }}>
           <Button variant='contained'>Add New Pokemon</Button>
         </Link>
         <CustomGallery />
