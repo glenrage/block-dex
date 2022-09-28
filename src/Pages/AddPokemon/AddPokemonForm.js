@@ -1,10 +1,7 @@
 import { useContext, useState, forwardRef } from 'react';
-import Layout from '../../Components/Layout/Layout';
 import FormInput from '../../Components/Forms/FormInput';
-
 import { PokedexContext } from '../../context/context';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
@@ -48,70 +45,64 @@ const AddPokemonForm = () => {
   });
 
   return (
-    <Layout>
-      <div className='AddPokemonForm'>
-        <h4>Add your own custom Pokemon</h4>
+    <div className='AddPokemonForm'>
+      <h4>Add your own custom Pokemon</h4>
 
-        <form>
-          <FormInput
-            handleFormChange={handleFormChange}
-            label='Pokemon Name'
-            name='name'
-            value={form.name}
-          />
-          <FormInput
-            handleFormChange={handleFormChange}
-            label='Height'
-            name='height'
-            value={form.height}
-          />
-          <FormInput
-            handleFormChange={handleFormChange}
-            label='Weight'
-            name='weight'
-            value={form.weight}
-          />
-          <FormInput
-            handleFormChange={handleFormChange}
-            label='Description'
-            name='description'
-            value={form.description}
-          />
-          <FormInput
-            handleFormChange={handleFormChange}
-            label='Image url'
-            name='image'
-            value={form.image}
-          />
-        </form>
+      <form>
+        <FormInput
+          handleFormChange={handleFormChange}
+          label='Pokemon Name'
+          name='name'
+          value={form.name}
+        />
+        <FormInput
+          handleFormChange={handleFormChange}
+          label='Height'
+          name='height'
+          value={form.height}
+        />
+        <FormInput
+          handleFormChange={handleFormChange}
+          label='Weight'
+          name='weight'
+          value={form.weight}
+        />
+        <FormInput
+          handleFormChange={handleFormChange}
+          label='Description'
+          name='description'
+          value={form.description}
+        />
+        <FormInput
+          handleFormChange={handleFormChange}
+          label='Image url'
+          name='image'
+          value={form.image}
+        />
+      </form>
 
-        <span className='button-container'>
-          <Button variant='contained' onClick={() => submit(form)}>
-            Create new Pokemon
-          </Button>
-        </span>
+      <span className='button-container'>
+        <Button variant='contained' onClick={() => submit(form)}>
+          Create new Pokemon
+        </Button>
+      </span>
 
-        <Snackbar
-          open={openToast}
-          autoHideDuration={750}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-        >
-          <Alert
-            onClose={handleClose}
-            severity='success'
-            sx={{ width: '100%' }}
-          >
-            {`Successfully added ${
-              customPokemon && customPokemon[customPokemon?.length - 1]?.name
-            }`}
-          </Alert>
-        </Snackbar>
-      </div>
-    </Layout>
+      <Snackbar
+        open={openToast}
+        autoHideDuration={750}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
+          {`Successfully added ${
+            customPokemon && customPokemon[customPokemon?.length - 1]?.name
+          }`}
+        </Alert>
+      </Snackbar>
+    </div>
   );
 };
 
