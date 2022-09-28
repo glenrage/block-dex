@@ -34,7 +34,7 @@ const DetailCard = ({ name, url, customPokemonDetails }) => {
         customPokemonDetails={customPokemonDetails}
       />
       <Card
-        sx={{ width: 200, margin: 2, height: 200 }}
+        sx={{ width: 200, margin: 2, height: 220 }}
         data-testid='detail-card'
       >
         <Button onClick={handleOpen}>

@@ -1,5 +1,5 @@
 import { useContext, useState, forwardRef } from 'react';
-import Layout from '../../Components/Layout';
+import Layout from '../../Components/Layout/Layout';
 import FormInput from '../../Components/Forms/FormInput';
 
 import { PokedexContext } from '../../context/context';
@@ -89,15 +89,11 @@ const AddPokemonForm = () => {
           <Button variant='contained' onClick={() => submit(form)}>
             Create new Pokemon
           </Button>
-
-          <Link to={'/'} style={{ textDecoration: 'none' }}>
-            <Button variant='contained'>Return to Gallery</Button>
-          </Link>
         </span>
 
         <Snackbar
           open={openToast}
-          autoHideDuration={1000}
+          autoHideDuration={750}
           onClose={handleClose}
           anchorOrigin={{
             vertical: 'top',

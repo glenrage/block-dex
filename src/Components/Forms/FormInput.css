@@ -9,8 +9,7 @@
   font-size: 14px;
 }
 
-.FormInput input {
-  padding: 0.5rem 0.75rem;
+.FormInput .input-field {
   width: 30%;
   font-size: 1rem;
 }

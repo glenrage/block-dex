@@ -1,5 +1,5 @@
-import Layout from './Components/Layout.js';
-import MainOverview from './Components/MainOverview.js';
+import Layout from './Components/Layout/Layout.js';
+import MainOverview from './Pages/MainOverview.js';
 
 import './App.css';
 

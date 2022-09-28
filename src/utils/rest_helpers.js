@@ -7,7 +7,7 @@ export const fetchPokemonDetails = async (fetchUrl) => {
 
     return data;
   } catch (error) {
-    console.error('Error', error);
+    console.error('Error fetching pokemon details', error);
   }
 };
 
@@ -18,7 +18,7 @@ export const fetchSecondaryPokemonDetails = async (url) => {
 
     return data;
   } catch (error) {
-    console.error('error fetching pokemon', error);
+    console.error('error fetching secondary pokemon detaiils', error);
   }
 };
 
@@ -30,6 +30,6 @@ export const fetchPokemonData = async (limit, page) => {
 
     return data;
   } catch (error) {
-    console.error('error fetching pokemon', error);
+    console.error('error fetching pokemon data', error);
   }
 };

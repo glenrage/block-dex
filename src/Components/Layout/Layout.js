@@ -1,10 +1,11 @@
 import React from 'react';
 import Container from '@mui/material/Container';
+import NavBar from './NavBar';
 
 function Layout({ children }) {
   return (
     <Container maxWidth='xl' className='main'>
-      <h1>POKEYDECKS</h1>
+      <NavBar />
       {children}
     </Container>
   );
