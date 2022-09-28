@@ -5,6 +5,7 @@ const MainOverview = () => {
   return (
     <Box sx={{ width: '100%' }}>
       <h4>PokeyDecks results</h4>
+
       <Gallery />
     </Box>
   );

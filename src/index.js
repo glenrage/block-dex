@@ -5,6 +5,7 @@ import { routes } from './utils/routes.js';
 import { PokedexContextProvider } from './context/context';
 import ErrorHandler from './Components/ErrorHandler';
 import reportWebVitals from './reportWebVitals';
+import Layout from './Components/Layout/Layout.js';
 
 import './index.css';
 
@@ -14,11 +15,13 @@ root.render(
     <ErrorHandler>
       <PokedexContextProvider>
         <BrowserRouter>
-          <Routes>
-            {routes.map(({ path, Component }, key) => (
-              <Route exact path={path} key={key} element={Component} />
-            ))}
-          </Routes>
+          <Layout>
+            <Routes>
+              {routes.map(({ path, Component }, key) => (
+                <Route exact path={path} key={key} element={Component} />
+              ))}
+            </Routes>
+          </Layout>
         </BrowserRouter>
       </PokedexContextProvider>
     </ErrorHandler>

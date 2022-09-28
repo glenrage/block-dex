@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Gallery from './Components/Gallery/Gallery.js';
-import MainOverview from './Components/MainOverview.js';
+import MainOverview from './Pages/MainOverview.js';
 import AddPokemonForm from './Pages/AddPokemon/AddPokemonForm.js';
-import CustomGallery from './Components/CustomGallery/CustomGallery.js';
+import CustomGallery from './Pages/CustomGallery.js';
 import DetailCard from './Components/DetailCard/DetailCard.js';
 import ErrorHandler from './Components/ErrorHandler.js';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,11 +12,10 @@ import userEvent from '@testing-library/user-event';
 
 describe('Simple PokeDecks Integration Tests', () => {
   describe('Happy Path Component rendering', () => {
-    it('Should render Main Overview Tabs', async () => {
+    it('Should render Main Overview Gallery', async () => {
       render(<MainOverview />);
 
-      await screen.findByText('Pokemon Gallery');
-      await screen.findByText('Custom Pokemon Gallery');
+      await screen.findByText('PokeyDecks results');
     });
 
     it('Should render Gallery and expected Pokedex initial fetch results', async () => {
