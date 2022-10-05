@@ -47,7 +47,8 @@ const DetailCard = ({ name, url, customPokemonDetails }) => {
             image={
               customPokemonDetails
                 ? customPokemonDetails.image
-                : pokemonDetails?.sprites?.other?.dream_world?.front_default
+                : pokemonDetails?.sprites?.other?.dream_world?.front_default ||
+                  pokemonDetails?.sprites?.front_default
             }
           />
         </Button>

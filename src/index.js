@@ -6,21 +6,21 @@ import { PokedexContextProvider } from './context/context';
 import ErrorHandler from './Components/ErrorHandler';
 import reportWebVitals from './reportWebVitals';
 import Layout from './Components/Layout/Layout.js';
-
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const renderRoutes = routes.map(({ path, Component }, key) => (
+  <Route exact path={path} key={key} element={Component} />
+));
+
 root.render(
   <React.StrictMode>
     <ErrorHandler>
       <PokedexContextProvider>
         <BrowserRouter>
           <Layout>
-            <Routes>
-              {routes.map(({ path, Component }, key) => (
-                <Route exact path={path} key={key} element={Component} />
-              ))}
-            </Routes>
+            <Routes>{renderRoutes}</Routes>
           </Layout>
         </BrowserRouter>
       </PokedexContextProvider>
